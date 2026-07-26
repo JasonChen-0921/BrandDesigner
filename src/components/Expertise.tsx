@@ -1,0 +1,5 @@
+import { expertise } from '../data/portfolio'
+import { SectionHeader } from './SectionHeader'
+import { useReveal } from '../hooks/useReveal'
+const Mark = ({ n }: { n: string }) => <svg viewBox="0 0 48 48" aria-hidden="true"><path d={n === '01' ? 'M8 40V9h21l-6 8 6 8H8' : n === '02' ? 'M9 9h30v30H9zM9 31 39 9M24 9v30' : n === '03' ? 'M10 16 24 8l14 8v17L24 41 10 33zM10 16l14 8 14-8M24 24v17' : n === '04' ? 'M7 9h34v30H7zM7 17h34M15 13h1M20 13h1M25 13h1M15 24h18M15 31h12' : 'M9 39 39 9M9 20V9h11M28 39h11V28'} /></svg>
+export function Expertise() { const ref = useReveal<HTMLElement>(); return <section id="expertise" className="section expertise reveal" ref={ref}><SectionHeader number="03" title="EXPERTISE"/><div className="expertise-grid">{expertise.map(([n, title, description]) => <article key={n}><p>{n}</p><Mark n={n} /><h3>{title}</h3><span>{description}</span></article>)}</div><div className="practice"><p><b>01</b> TOOLS <i>/</i> Adobe Photoshop · Illustrator · AI-assisted exploration</p><p><b>02</b> COLLABORATION <i>/</i> Strategy · Copywriting · Production</p><p><b>03</b> EXPERIENCE <i>/</i> Food · Beverage · FMCG · Real Estate</p></div></section> }

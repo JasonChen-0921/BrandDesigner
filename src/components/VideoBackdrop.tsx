@@ -1,0 +1,2 @@
+import { useState } from 'react'
+export function VideoBackdrop({ source, poster }: { source: string; poster: string }) { const [failed, setFailed] = useState(false); return <div className="video-backdrop" style={{ backgroundImage: `url(${poster})` }} aria-hidden="true">{!failed && <video autoPlay muted loop playsInline poster={poster} onError={() => setFailed(true)}><source src={source} type="video/mp4" /></video>}</div> }

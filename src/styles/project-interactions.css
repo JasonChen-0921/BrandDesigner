@@ -1,0 +1,9 @@
+.projects .project-view-link{position:absolute;bottom:8px;left:0;display:flex;align-items:center;gap:8px;padding-bottom:4px;border-bottom:1px solid #111;color:#111;font:500 clamp(10px,.72vw,13px)/1 "DM Mono","Microsoft YaHei",sans-serif;letter-spacing:.05em}.projects .project-view-link b{position:relative;display:block;width:18px;height:18px;background:#111}.projects .project-view-link b::before{content:"";position:absolute;top:50%;left:50%;border-top:4px solid transparent;border-bottom:4px solid transparent;border-left:5px solid #fff;transform:translate(-38%,-50%)}.projects .project-view-link:hover,.projects .project-view-link:focus-visible{color:var(--accent);border-color:var(--accent)}.projects .project-view-link:hover b,.projects .project-view-link:focus-visible b{background:var(--accent)}
+.projects .project-view-animation{position:absolute;bottom:8px;left:0}.projects .project-view-animation .project-view-link{position:static;transform:scale(1.2);transform-origin:left bottom}
+.projects .project-media img,
+.projects .project-media:hover img {
+  transform: none !important;
+  transition: none !important;
+  opacity: 1 !important;
+}
+@media (max-width:800px){.projects .project-view-link{position:static;width:max-content;margin-top:38px}.projects .project-view-animation{position:static;width:max-content;margin-top:38px}.projects .project-view-animation .project-view-link{margin-top:0}}

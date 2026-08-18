@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import AnimatedContent from './AnimatedContent'
 import brandMark from '../assets/brand-mark.png'
 import headerPortrait from '../assets/header-portrait.jpg'
 
@@ -38,18 +39,28 @@ export function SiteHeader() {
 
   return (
     <header className={isOnLightBackground ? 'site-header is-on-light' : 'site-header'}>
+      <div className="header-slot header-slot--brand">
+      <AnimatedContent className="header-animation" direction="vertical" reverse distance={32} duration={0.8} delay={0.1}>
       <div className="brand-row">
         <a className="monogram" href="#top" aria-label="Back to top">
           <img src={brandMark} alt="Jason Chen brand mark" />
         </a>
         <a className="works-link" href="#top">JASON CHEN</a>
       </div>
+      </AnimatedContent>
+      </div>
+      <div className="header-slot header-slot--time">
+      <AnimatedContent className="header-animation" direction="vertical" reverse distance={32} duration={0.8} delay={0.22}>
       <div className="time-cluster" aria-label="Current Beijing time">
         <span>BEIJING</span>
         <span>CHINA</span>
         <strong>{time}</strong>
         <small>(GMT+8)</small>
       </div>
+      </AnimatedContent>
+      </div>
+      <div className="header-slot header-slot--contact">
+      <AnimatedContent className="header-animation" direction="vertical" reverse distance={32} duration={0.8} delay={0.34}>
       <nav id="site-navigation" className={open ? 'nav open' : 'nav'} aria-label="Primary navigation">
         <a className="contact-chip" href="#contact" onClick={() => setOpen(false)}>
           <span className="nav-contact">CONTACT ME</span>
@@ -58,6 +69,8 @@ export function SiteHeader() {
           </span>
         </a>
       </nav>
+      </AnimatedContent>
+      </div>
       <button className="menu-button" onClick={() => setOpen(!open)} aria-expanded={open} aria-controls="site-navigation">
         <span />
         <span />

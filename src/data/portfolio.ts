@@ -56,4 +56,4 @@ export const expertise = [
   ['01', 'Brand Strategy', '从品牌洞察到视觉方向，建立清楚的表达基线。'], ['02', 'Visual Identity', '以系统化识别让品牌在每个触点保持一致。'], ['03', 'Packaging Systems', '让结构、材料与货架沟通共同服务产品价值。'], ['04', 'Digital Experience', '将视觉策略延伸至线上信息与体验细节。'], ['05', 'Art Direction', '在全局视野中控制画面、节奏与内容质感。']
 ]
 
-export const socials = [{ label: 'Behance', href: '#' }, { label: 'Instagram', href: '#' }, { label: 'LinkedIn', href: '#' }]
+export const socials = [{ label: 'SELECTED WORKS', href: '#' }, { label: 'OTHER WORKS', href: '#' }, { label: 'WORK EXPERIENCE', href: '#' }]

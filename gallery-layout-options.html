@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>聚小鲜图库布局方案</title>
+    <style>
+      *{box-sizing:border-box}body{margin:0;background:#f5f3ee;color:#181812;font-family:"Microsoft YaHei",sans-serif}.wrap{max-width:1500px;margin:auto;padding:54px 28px 80px}h1{margin:0;font-size:clamp(30px,4vw,58px);letter-spacing:-.06em}.lead{max-width:800px;margin:14px 0 52px;color:#666;font-size:16px;line-height:1.7}.options{display:grid;gap:54px}.option{padding:25px;border:1px solid #dbd8cf;background:#fff;box-shadow:0 18px 36px rgba(47,45,31,.07)}.option h2{margin:0;font-size:25px}.option p{margin:8px 0 23px;color:#666;font-size:14px;line-height:1.6}.gallery{display:grid;gap:10px}.gallery img{display:block;width:100%;height:100%;object-fit:cover}.editorial{grid-template-columns:1.65fr 1fr}.editorial .wide{grid-row:span 2;aspect-ratio:1.42}.editorial .small{aspect-ratio:1.42}.sequence{grid-template-columns:repeat(4,1fr)}.sequence figure{margin:0;aspect-ratio:1}.case-study{grid-template-columns:1.4fr 1fr}.case-study .hero{grid-row:span 2;aspect-ratio:1.38}.case-study .pair{display:grid;grid-template-columns:1fr 1fr;gap:10px;aspect-ratio:1.38}.case-study .pair img{aspect-ratio:1;object-fit:cover}.case-study .full{aspect-ratio:2.1}@media(max-width:700px){.wrap{padding:34px 16px 48px}.editorial,.case-study{grid-template-columns:1fr}.editorial .wide,.case-study .hero{grid-row:auto}.sequence{grid-template-columns:repeat(2,1fr)}}
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <h1>聚小鲜 · 新图追加图库</h1>
+      <p class="lead">以下均表示：保留现有 18 张聚宝金昊图片后，新增的 22 张聚小鲜素材如何承接。示意中使用现有项目图片来展示版式比例与节奏。</p>
+      <div class="options">
+        <section class="option">
+          <h2>A. 沉浸式全幅编年</h2>
+          <p>所有新增图片依文件顺序逐张全宽展示；最直接、最完整，适合将页面作为视觉案例长卷。</p>
+          <div class="gallery editorial">
+            <img class="wide" src="/src/assets/jubao-gallery-01.png" alt="全幅主视觉示意" />
+            <img class="small" src="/src/assets/jubao-gallery-05.png" alt="单图示意" />
+            <img class="small" src="/src/assets/jubao-gallery-07.png" alt="单图示意" />
+          </div>
+        </section>
+        <section class="option">
+          <h2>B. 紧凑作品墙</h2>
+          <p>将同一主题的产品、物料、终端图片组合为 2–4 列网格；信息密度最高，浏览节奏最快。</p>
+          <div class="gallery sequence">
+            <figure><img src="/src/assets/jubao-gallery-02.png" alt="网格示意" /></figure><figure><img src="/src/assets/jubao-gallery-03.png" alt="网格示意" /></figure><figure><img src="/src/assets/jubao-gallery-04.png" alt="网格示意" /></figure><figure><img src="/src/assets/jubao-gallery-06.png" alt="网格示意" /></figure>
+          </div>
+        </section>
+        <section class="option">
+          <h2>C. 叙事型混合编排（推荐）</h2>
+          <p>用品牌主视觉、IP、产品包装、线下终端四个章节组织；每章以一张全幅重点图开场，再用成组图片补充细节。</p>
+          <div class="gallery case-study">
+            <img class="hero" src="/src/assets/jubao-gallery-08.png" alt="章节主视觉示意" />
+            <div class="pair"><img src="/src/assets/jubao-gallery-09.png" alt="细节示意" /><img src="/src/assets/jubao-gallery-10.png" alt="细节示意" /></div>
+            <img class="full" src="/src/assets/jubao-gallery-11.png" alt="章节横幅示意" />
+          </div>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>

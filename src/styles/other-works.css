@@ -1,0 +1,259 @@
+.other-works {
+  padding: clamp(58px, 7.26vw, 121px) 0 clamp(88px, 10vw, 160px);
+  overflow: hidden;
+  background: #fff;
+}
+
+.other-works h2 {
+  margin: 0 24px clamp(48px, 6vw, 92px);
+  color: var(--accent);
+  text-align: center;
+  font: 400 clamp(58px, 9vw, 160px) / 0.86 "ZT Formom", "Source Han Serif SC", serif;
+  letter-spacing: -0.08em;
+}
+
+.other-works h2 img {
+  display: block;
+  width: auto;
+  height: 149px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.other-works-track {
+  display: flex;
+  gap: clamp(12px, 1.2vw, 22px);
+  overflow-x: auto;
+  padding: 48px clamp(24px, 3.2vw, 64px) 60px;
+  margin: -48px 0;
+  scroll-snap-type: none;
+  scrollbar-width: none;
+}
+
+.other-works-track::-webkit-scrollbar {
+  display: none;
+}
+
+.other-works-card-animation {
+  flex: 0 0 clamp(320px, 30.5vw, 470px);
+  height: clamp(427px, 40.67vw, 627px);
+}
+
+.other-works-card-animation .other-works-card {
+  width: 100%;
+  height: 100%;
+}
+
+.other-works-card {
+  position: relative;
+  flex: 0 0 clamp(320px, 30.5vw, 470px);
+  height: clamp(427px, 40.67vw, 627px);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(21px, 2.03vw, 31px);
+  border: 1px solid rgba(17, 17, 17, 0.14);
+  border-radius: clamp(11px, 1.07vw, 16px);
+  background: #fff;
+  scroll-snap-align: start;
+}
+
+.other-works-card--link {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.other-works-card--link:focus-visible {
+  outline: 2px solid #ff5a1f;
+  outline-offset: 3px;
+}
+
+.other-works-card.border-glow-card {
+  border: 1px solid rgba(17, 17, 17, 0.14);
+  background: #fff;
+}
+
+.other-works-card .border-glow-inner,
+.other-works-card__link,
+.other-works-card__static {
+  flex: 1;
+  min-height: 0;
+}
+
+.other-works-card .border-glow-inner {
+  overflow: visible;
+}
+
+.other-works-card__link,
+.other-works-card__static {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  color: inherit;
+  text-decoration: none;
+}
+
+.other-works-card__link:focus-visible {
+  outline: 2px solid #ff5a1f;
+  outline-offset: 3px;
+}
+
+.other-works-card__meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  color: #111;
+  font: 400 clamp(16px, 1.45vw, 22px) / 1 "Source Han Sans SC", "Noto Sans SC", sans-serif;
+  letter-spacing: -0.05em;
+}
+
+.other-works-card__meta span:last-child {
+  font: 400 clamp(13px, 1vw, 19px) / 1 "DM Mono", monospace;
+  letter-spacing: 0;
+}
+
+.other-works-card__image-placeholder {
+  width: 100%;
+  aspect-ratio: 1;
+  margin-top: clamp(13px, 1.1vw, 17px);
+  border-radius: clamp(9px, 0.84vw, 13px);
+  background: #373737;
+}
+
+.other-works-card__image {
+  display: block;
+  object-fit: cover;
+}
+
+.other-works-card__typeface-cover {
+  clip-path: inset(4px round clamp(6px, 0.84vw, 10px));
+}
+
+.other-works-card__typeface-work {
+  border: 0;
+  border-radius: clamp(9px, 0.84vw, 13px);
+  box-shadow: none;
+  background: #fff;
+  clip-path: inset(4px round clamp(5px, 0.84vw, 9px));
+}
+
+.other-works-card__content {
+  position: relative;
+  margin-top: clamp(16px, 1.56vw, 24px);
+  padding-right: clamp(51px, 4.88vw, 75px);
+}
+
+.other-works-card--link .other-works-card__content {
+  padding-right: 0;
+}
+
+.other-works-card__description-row {
+  display: flex;
+  align-items: center;
+  gap: clamp(16px, 1.56vw, 24px);
+  margin-top: clamp(12px, 1.16vw, 18px);
+}
+
+.other-works-card__content--typeface .other-works-card__description-row {
+  margin-top: clamp(4px, 0.42vw, 7px);
+}
+
+.other-works-card__content--dekang .other-works-card__description-row {
+  margin-top: clamp(7px, 0.9vw, 14px);
+}
+
+.other-works-card .other-works-card__description-row p {
+  flex: 1;
+  margin: 0;
+}
+
+.other-works-card__description-row .other-works-card__arrow {
+  position: static;
+  flex: 0 0 clamp(24px, 2.29vw, 35px);
+}
+
+.other-works-card__content h3 {
+  margin: 0;
+  color: #111;
+  font: 700 clamp(22px, 2vw, 38px) / 1.1 "Microsoft YaHei", sans-serif;
+  letter-spacing: -0.07em;
+}
+
+.other-works-card__content h3 img {
+  display: block;
+  width: clamp(64px, 6.1vw, 94px);
+  height: auto;
+}
+
+.other-works-card__content h3 img.other-works-card__typeface-title {
+  width: auto;
+  height: 42px;
+}
+
+.other-works-card__content h3 img.other-works-card__typeface-work-title {
+  width: auto;
+  height: 32px;
+}
+
+.other-works-card__content p {
+  margin: clamp(12px, 1.16vw, 18px) 0 0;
+  color: #858585;
+  white-space: pre-line;
+  font: 400 clamp(12px, 1.1vw, 17px) / 1.45 "Microsoft YaHei", sans-serif;
+  letter-spacing: -0.05em;
+}
+
+.other-works-card__content--typeface p {
+  margin-top: clamp(4px, 0.42vw, 7px);
+}
+
+.other-works-card__arrow {
+  position: absolute;
+  right: clamp(21px, 2.03vw, 31px);
+  bottom: clamp(21px, 2.03vw, 31px);
+  display: grid;
+  width: clamp(24px, 2.29vw, 35px);
+  aspect-ratio: 1;
+  place-items: center;
+  border: 1px solid rgba(17, 17, 17, 0.45);
+  border-radius: clamp(3px, 0.53vw, 8px);
+  color: #111;
+  font-size: clamp(13px, 0.7vw, 18px);
+  line-height: 1;
+}
+
+.other-works-card__arrow > span {
+  transform: translateY(0.1em);
+}
+
+@media (max-width: 800px) {
+  .other-works {
+    padding: 53px 0 76px;
+  }
+
+  .other-works h2 {
+    margin-bottom: 42px;
+  }
+
+  .other-works h2 img {
+    height: auto;
+    max-height: 149px;
+  }
+
+  .other-works-track {
+    padding-inline: 24px;
+  }
+
+  .other-works-card {
+    flex-basis: min(78vw, 390px);
+    height: auto;
+    aspect-ratio: 3 / 4;
+  }
+
+  .other-works-card-animation {
+    flex-basis: min(78vw, 390px);
+    height: auto;
+    aspect-ratio: 3 / 4;
+  }
+}

@@ -1,5 +1,6 @@
 import { Link, useParams } from 'react-router-dom'
 import AnimatedContent from '../components/AnimatedContent'
+import HlsVideo from '../components/HlsVideo'
 import { projects } from '../data/portfolio'
 import projectMark from '../assets/project-jc-mark.png'
 import xiduoduoIntro from '../assets/xiduoduo-intro.png'
@@ -15,7 +16,6 @@ import xiduoduoGallery27 from '../assets/xiduoduo-gallery-27.jpeg'
 import xiduoduoGallery28 from '../assets/xiduoduo-gallery-28.jpeg'
 import xiduoduoGallery29 from '../assets/xiduoduo-gallery-29.png'
 import xiduoduoGallery31 from '../assets/xiduoduo-gallery-31.jpeg'
-import xiduoduoClosingVideo from '../assets/xiduoduo-closing-video.mp4'
 import xiduoduoExtraVideo from '../assets/xiduoduo-extra-video.mp4'
 import houchengGallery01 from '../assets/houcheng-gallery-01.jpg'
 import houchengGallery02 from '../assets/houcheng-gallery-02.jpg'
@@ -79,7 +79,6 @@ import jubaoExtra02 from '../assets/jubao-extra-02.jpg'
 import jubaoExtra03 from '../assets/jubao-extra-03.jpg'
 import jubaoExtra04 from '../assets/jubao-extra-04.jpg'
 import jubaoExtra05 from '../assets/jubao-extra-05.jpg'
-import jubaoExtra06 from '../assets/jubao-extra-06.mp4'
 import juxiaoxianGallery01 from '../assets/juxiaoxian-gallery-01.png'
 import juxiaoxianGallery02 from '../assets/juxiaoxian-gallery-02.jpg'
 import juxiaoxianGallery03 from '../assets/juxiaoxian-gallery-03.png'
@@ -320,10 +319,7 @@ export default function ProjectPage() {
                   </AnimatedContent>
                 ))}
                 <figure className="xiduoduo-gallery-video">
-                  <video controls playsInline preload="none">
-                    <source src={jubaoExtra06} type="video/mp4" />
-                    您的浏览器不支持视频播放。
-                  </video>
+                  <HlsVideo src="/media/jubao-hls-v2/index.m3u8" />
                 </figure>
               </section>
             </>
@@ -364,10 +360,7 @@ export default function ProjectPage() {
               <section className="xiduoduo-gallery xiduoduo-gallery--natural" aria-label="喜多多项目视频">
                 <AnimatedContent direction="vertical" distance={50} duration={1.7} ease="power3.out" initialOpacity={0} animateOpacity scale={1} threshold={0.2} delay={0.3} asChild>
                   <figure className="xiduoduo-gallery-video">
-                    <video controls playsInline preload="metadata">
-                      <source src={xiduoduoClosingVideo} type="video/mp4" />
-                      您的浏览器不支持视频播放。
-                    </video>
+                    <HlsVideo src="/media/xiduoduo-hls/index.m3u8" />
                   </figure>
                 </AnimatedContent>
                 <AnimatedContent direction="vertical" distance={50} duration={1.7} ease="power3.out" initialOpacity={0} animateOpacity scale={1} threshold={0.2} delay={0.3} asChild>

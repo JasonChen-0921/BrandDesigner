@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import cardAvatarVideo from '../assets/card-avatar-video.mp4'
 import contactMessage from '../assets/contact-message-replacement.png'
 import contactMessageOverlay from '../assets/contact-message-overlay.png'
@@ -8,6 +8,23 @@ import { profile } from '../data/portfolio'
 
 export function ContactFooter() {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false)
+
+  useEffect(() => {
+    if (!isContactModalOpen) return
+
+    const previousOverflow = document.body.style.overflow
+    const pausedVideos = [...document.querySelectorAll('video')].filter((video) => !video.paused)
+
+    document.body.classList.add('is-contact-modal-open')
+    document.body.style.overflow = 'hidden'
+    pausedVideos.forEach((video) => video.pause())
+
+    return () => {
+      document.body.classList.remove('is-contact-modal-open')
+      document.body.style.overflow = previousOverflow
+      pausedVideos.forEach((video) => { void video.play().catch(() => undefined) })
+    }
+  }, [isContactModalOpen])
 
   return (
     <footer id="contact" className="contact contact-reference">

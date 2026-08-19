@@ -7,6 +7,7 @@ Replace the scroll-scrubbed profile-to-project transition with a naturally playi
 ## Behavior
 
 - Keep the existing transition section and its current layout.
+- Use `E:\工作\作品集网页\7月20日.mp4` as the replacement transition asset.
 - Start playback automatically when the video can play.
 - Keep playback muted, inline, and looping so it works in modern browsers.
 - Remove all scroll, wheel, animation-frame, and media-seeking logic.
@@ -15,7 +16,7 @@ Replace the scroll-scrubbed profile-to-project transition with a naturally playi
 ## Scope
 
 - Modify only `src/components/ScrollTransition.tsx` and its focused test.
-- Keep the existing `profile-to-project.mp4` asset.
+- Preserve the existing `profile-to-project.mp4` asset and add the replacement as a new project asset.
 
 ## Verification
 

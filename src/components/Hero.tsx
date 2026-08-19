@@ -1,4 +1,4 @@
-import { type CSSProperties, useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import cardAvatarVideo from '../assets/card-avatar-video.mp4'
 import cardHandleLeft from '../assets/card-handle-left.png'
@@ -8,19 +8,32 @@ import heroTitleCustom from '../assets/hero-title-custom.png'
 import AnimatedContent from './AnimatedContent'
 
 export function Hero() {
-  const [cursor, setCursor] = useState({ x: 0, y: 0, visible: false, large: false, dark: false })
+  const cursorRef = useRef<HTMLSpanElement>(null)
+  const [cursor, setCursor] = useState({ visible: false, large: false, dark: false })
 
   useEffect(() => {
+    let animationFrame = 0
+    let cursorX = 0
+    let cursorY = 0
+
+    const updateCursorPosition = () => {
+      cursorRef.current?.style.setProperty('--cursor-x', `${cursorX}px`)
+      cursorRef.current?.style.setProperty('--cursor-y', `${cursorY}px`)
+      animationFrame = 0
+    }
+
     const updateCursor = (event: PointerEvent) => {
       const target = event.target instanceof Element ? event.target : null
       const contactChip = target?.closest('.contact-chip') as HTMLElement | null
       const contactReferenceAction = target?.closest('.contact-reference-action')
-      setCursor({
-        x: event.clientX,
-        y: event.clientY,
-        visible: true,
-        large: Boolean(contactChip || target?.closest('.hero-bottom a, .contact-reference-home-nav a, .contact-reference-action, .works-link, .project-view-link, .other-works-card--link')),
-        dark: Boolean(contactReferenceAction),
+      cursorX = event.clientX
+      cursorY = event.clientY
+      if (!animationFrame) animationFrame = window.requestAnimationFrame(updateCursorPosition)
+      const large = Boolean(contactChip || target?.closest('.hero-bottom a, .contact-reference-home-nav a, .contact-reference-action, .works-link, .project-view-link, .other-works-card--link'))
+      const dark = Boolean(contactReferenceAction)
+      setCursor((current) => {
+        if (current.visible && current.large === large && current.dark === dark) return current
+        return { visible: true, large, dark }
       })
     }
     const hideCursor = () => setCursor((current) => ({ ...current, visible: false, large: false, dark: false }))
@@ -28,6 +41,7 @@ export function Hero() {
     window.addEventListener('pointermove', updateCursor)
     window.addEventListener('pointerleave', hideCursor)
     return () => {
+      window.cancelAnimationFrame(animationFrame)
       window.removeEventListener('pointermove', updateCursor)
       window.removeEventListener('pointerleave', hideCursor)
     }
@@ -36,13 +50,13 @@ export function Hero() {
   return (
     <>
       {createPortal(<span
+        ref={cursorRef}
         className={[
           'cursor-dot',
           cursor.visible ? 'is-visible' : '',
           cursor.large ? 'is-large' : '',
           cursor.dark ? 'is-dark' : '',
         ].filter(Boolean).join(' ')}
-        style={{ '--cursor-x': `${cursor.x}px`, '--cursor-y': `${cursor.y}px` } as CSSProperties}
         aria-hidden="true"
       />, document.body)}
       <section id="top" className="hero hero-reference">

@@ -25,13 +25,18 @@ const easeInCubic = (value: number) => value ** 3
 
 function animateValue({ start = 0, end = 100, duration = 1000, delay = 0, ease = easeOutCubic, onUpdate, onEnd }: { start?: number; end?: number; duration?: number; delay?: number; ease?: (value: number) => number; onUpdate: (value: number) => void; onEnd?: () => void }) {
   const startTime = performance.now() + delay
+  let animationFrame = 0
   const tick = () => {
     const progress = Math.min((performance.now() - startTime) / duration, 1)
     onUpdate(start + (end - start) * ease(progress))
-    if (progress < 1) window.requestAnimationFrame(tick)
+    if (progress < 1) animationFrame = window.requestAnimationFrame(tick)
     else onEnd?.()
   }
-  window.setTimeout(() => window.requestAnimationFrame(tick), delay)
+  const timeout = window.setTimeout(() => { animationFrame = window.requestAnimationFrame(tick) }, delay)
+  return () => {
+    window.clearTimeout(timeout)
+    window.cancelAnimationFrame(animationFrame)
+  }
 }
 
 function buildGlowVars(glowColor: string, intensity: number) {
@@ -73,12 +78,34 @@ export default function BorderGlow({ children, className = '', edgeSensitivity =
   useEffect(() => {
     if (!animated || !cardRef.current) return
     const card = cardRef.current
-    card.classList.add('sweep-active')
-    card.style.setProperty('--cursor-angle', '110deg')
-    animateValue({ duration: 500, onUpdate: value => card.style.setProperty('--edge-proximity', `${value}`) })
-    animateValue({ ease: easeInCubic, duration: 1500, end: 50, onUpdate: value => card.style.setProperty('--cursor-angle', `${110 + 355 * (value / 100)}deg`) })
-    animateValue({ ease: easeOutCubic, delay: 1500, duration: 2250, start: 50, end: 100, onUpdate: value => card.style.setProperty('--cursor-angle', `${110 + 355 * (value / 100)}deg`) })
-    animateValue({ ease: easeInCubic, delay: 2500, duration: 1500, start: 100, end: 0, onUpdate: value => card.style.setProperty('--edge-proximity', `${value}`), onEnd: () => card.classList.remove('sweep-active') })
+    let hasAnimated = false
+    let cancelAnimations: Array<() => void> = []
+
+    const playSweep = () => {
+      if (hasAnimated || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+      hasAnimated = true
+      card.classList.add('sweep-active')
+      card.style.setProperty('--cursor-angle', '110deg')
+      cancelAnimations = [
+        animateValue({ duration: 500, onUpdate: value => card.style.setProperty('--edge-proximity', `${value}`) }),
+        animateValue({ ease: easeInCubic, duration: 1500, end: 50, onUpdate: value => card.style.setProperty('--cursor-angle', `${110 + 355 * (value / 100)}deg`) }),
+        animateValue({ ease: easeOutCubic, delay: 1500, duration: 2250, start: 50, end: 100, onUpdate: value => card.style.setProperty('--cursor-angle', `${110 + 355 * (value / 100)}deg`) }),
+        animateValue({ ease: easeInCubic, delay: 2500, duration: 1500, start: 100, end: 0, onUpdate: value => card.style.setProperty('--edge-proximity', `${value}`), onEnd: () => card.classList.remove('sweep-active') }),
+      ]
+    }
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return
+      playSweep()
+      observer.disconnect()
+    }, { threshold: 0.1 })
+
+    observer.observe(card)
+    return () => {
+      observer.disconnect()
+      cancelAnimations.forEach(cancel => cancel())
+      card.classList.remove('sweep-active')
+    }
   }, [animated])
 
   return <div ref={cardRef} onPointerMove={handlePointerMove} className={`border-glow-card ${className}`} style={{ '--card-bg': backgroundColor, '--edge-sensitivity': edgeSensitivity, '--border-radius': `${borderRadius}px`, '--glow-padding': `${glowRadius}px`, '--cone-spread': coneSpread, '--fill-opacity': fillOpacity, ...buildGlowVars(glowColor, glowIntensity), ...buildGradientVars(colors) } as React.CSSProperties}>{<span className="edge-light" />}<div className="border-glow-inner">{children}</div></div>

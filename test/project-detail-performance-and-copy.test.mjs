@@ -15,6 +15,6 @@ test('project detail pages label the year correctly and lazy-load gallery images
 
   assert.match(projectPage, /<img src=\{image\} loading="lazy" decoding="async"/)
   assert.match(otherWorkPage, /<img src=\{image\} loading="lazy" decoding="async"/)
-  assert.match(projectPage, /<source src=\{jubaoExtra06\} type="video\/mp4" \/>\s*您的浏览器不支持视频播放。\s*<\/video>/)
-  assert.match(projectPage, /<video controls playsInline preload="none">\s*<source src=\{jubaoExtra06\}/)
+  assert.match(projectPage, /<HlsVideo src="\/media\/jubao-hls-v2\/index\.m3u8" \/>/)
+  assert.match(projectPage, /<HlsVideo src="\/media\/xiduoduo-hls\/index\.m3u8" \/>/)
 })
